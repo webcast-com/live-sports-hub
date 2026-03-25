@@ -23,7 +23,22 @@ export function useScoreSimulator() {
 
       if (data?.success && Array.isArray(data.matches) && data.matches.length > 0) {
         // Map the edge function response to our LiveMatch type
-        const mapped: LiveMatch[] = data.matches.map((m: any) => ({
+        interface RawMatch {
+          id: number;
+          sport: string;
+          league: string;
+          homeTeam: string;
+          awayTeam: string;
+          homeScore: number;
+          awayScore: number;
+          time: string;
+          status: string;
+          homeColor: string;
+          awayColor: string;
+          homeAbbr: string;
+          awayAbbr: string;
+        }
+        const mapped: LiveMatch[] = (data.matches as RawMatch[]).map((m) => ({
           id: m.id,
           sport: m.sport as LiveMatch['sport'],
           league: m.league,
@@ -43,9 +58,10 @@ export function useScoreSimulator() {
         setSource(data.source || 'edge-function');
         setError(null);
       }
-    } catch (err: any) {
-      console.warn('Failed to fetch live scores from edge function:', err.message);
-      setError(err.message);
+    } catch (err) {
+      const errorMessage = err instanceof Error ? err.message : 'Unknown error';
+      console.warn('Failed to fetch live scores from edge function:', errorMessage);
+      setError(errorMessage);
       // Keep existing matches (either previous API data or fallback)
     } finally {
       setLoading(false);
