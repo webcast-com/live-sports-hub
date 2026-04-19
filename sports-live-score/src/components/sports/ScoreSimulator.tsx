@@ -13,13 +13,17 @@ export function useScoreSimulator() {
 
   const fetchLiveScores = useCallback(async () => {
     try {
+      console.info('[ScoreSimulator] Fetching live scores from Edge Function');
       const { data, error: fnError } = await supabase.functions.invoke('live-scores', {
         body: {},
       });
 
       if (fnError) {
+        console.warn('[ScoreSimulator] Edge function error:', fnError);
         throw new Error(fnError.message || 'Edge function error');
       }
+
+      console.info('[ScoreSimulator] Edge function response received:', data);
 
       if (data?.success && Array.isArray(data.matches) && data.matches.length > 0) {
         // Map the edge function response to our LiveMatch type
