@@ -12,6 +12,7 @@ import Standings from './sports/Standings';
 import NewsFeed from './sports/NewsFeed';
 import Footer from './sports/Footer';
 import BackToTop from './sports/BackToTop';
+import Navigation from './Navigation';
 import { useScoreSimulator } from './sports/ScoreSimulator';
 import { Wifi, WifiOff, Loader2, Database, Radio } from 'lucide-react';
 
@@ -24,6 +25,7 @@ const AppLayout: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-[#0d1117] text-white">
+      <Navigation />
       <Header
         activeSport={activeSport}
         onSportChange={setActiveSport}
