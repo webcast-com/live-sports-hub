@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Star } from 'lucide-react';
 import { LiveMatch } from '@/data/sportsData';
 
@@ -10,6 +11,7 @@ interface LiveScoreCardProps {
 }
 
 const LiveScoreCard: React.FC<LiveScoreCardProps> = ({ match, isFavorite, onToggleFavorite, onClick }) => {
+  const navigate = useNavigate();
   const statusBadge = () => {
     switch (match.status) {
       case 'live':
@@ -37,7 +39,7 @@ const LiveScoreCard: React.FC<LiveScoreCardProps> = ({ match, isFavorite, onTogg
   return (
     <div
       className="group relative bg-[#161b22] border border-white/5 rounded-2xl p-5 hover:border-[#00d4ff]/20 hover:bg-[#1c2333] transition-all cursor-pointer"
-      onClick={() => onClick(match)}
+      onClick={() => navigate(`/match/${match.id}/commentary`)}
     >
       {/* Top row */}
       <div className="flex items-center justify-between mb-4">

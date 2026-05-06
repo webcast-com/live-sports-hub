@@ -1,11 +1,12 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Home, TrendingUp, Calendar, Trophy, Newspaper, Users } from 'lucide-react';
+import { Home, TrendingUp, Calendar, Trophy, Newspaper, Users, Zap } from 'lucide-react';
 
 const Navigation: React.FC = () => {
   const location = useLocation();
 
-  const isActive = (path: string) => location.pathname === path;
+  const isActive = (path: string) => location.pathname === path || 
+    (path === '/top-scorers' && location.pathname === '/top-scorers');
 
   const navItems = [
     { path: '/', label: 'Home', icon: Home },

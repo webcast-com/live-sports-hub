@@ -11,6 +11,9 @@ import UpcomingPage from "./pages/UpcomingPage";
 import StandingsPage from "./pages/StandingsPage";
 import NewsPage from "./pages/NewsPage";
 import TopScorersPage from "./pages/TopScorersPage";
+import TeamDetailPage from "./pages/TeamDetailPage";
+import PlayerDetailPage from "./pages/PlayerDetailPage";
+import MatchCommentaryPage from "./pages/MatchCommentaryPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -30,6 +33,9 @@ const App = () => (
               <Route path="/standings" element={<StandingsPage />} />
               <Route path="/news" element={<NewsPage />} />
               <Route path="/top-scorers" element={<TopScorersPage />} />
+              <Route path="/team/:teamId" element={<TeamDetailPage />} />
+              <Route path="/player/:playerId" element={<PlayerDetailPage />} />
+              <Route path="/match/:matchId/commentary" element={<MatchCommentaryPage />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </AppProvider>

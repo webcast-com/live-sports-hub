@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Award, TrendingUp, TrendingDown, Minus } from 'lucide-react';
 
 interface Player {
@@ -82,7 +83,12 @@ const TopScorers: React.FC = () => {
 
               {/* Player info */}
               <div className="flex-1 min-w-0">
-                <p className="text-white font-semibold text-sm truncate">{player.name}</p>
+                <Link
+                  to={`/player/${[1, 2, 3, 4, 5, 6, 7][player.rank - 1] || 1}`}
+                  className="text-white font-semibold text-sm truncate hover:text-[#00d4ff] transition-colors block"
+                >
+                  {player.name}
+                </Link>
                 <div className="flex items-center gap-2 mt-0.5">
                   <div
                     className="w-4 h-4 rounded flex items-center justify-center text-white text-[6px] font-black"

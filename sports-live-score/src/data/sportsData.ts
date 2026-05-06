@@ -180,6 +180,50 @@ export const newsArticles: NewsArticle[] = [
   },
 ];
 
+export interface Team {
+  id: number;
+  name: string;
+  abbr: string;
+  sport: Sport;
+  league: string;
+  founded: number;
+  stadium: string;
+  city: string;
+  color: string;
+  secondaryColor: string;
+  logo?: string;
+}
+
+export interface Player {
+  id: number;
+  name: string;
+  number: number;
+  position: string;
+  teamId: number;
+  nationality: string;
+  height?: string;
+  weight?: string;
+  dateOfBirth?: string;
+  joinedDate?: string;
+  stats: {
+    appearances: number;
+    goals: number;
+    assists: number;
+    yellowCards: number;
+    redCards: number;
+    minutes: number;
+  };
+  achievements: string[];
+}
+
+export interface MatchEvent {
+  time: string;
+  event: string;
+  team: 'home' | 'away';
+  player: string;
+  detail: string;
+}
+
 export const sportIcons: Record<string, string> = {
   football: 'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z',
   basketball: 'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z',
@@ -187,6 +231,124 @@ export const sportIcons: Record<string, string> = {
   baseball: 'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z',
   tennis: 'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z',
 };
+
+export const teams: Team[] = [
+  { id: 1, name: 'Manchester City', abbr: 'MCI', sport: 'soccer', league: 'Premier League', founded: 1880, stadium: 'Etihad Stadium', city: 'Manchester', color: '#6CABDD', secondaryColor: '#1BA0C8' },
+  { id: 2, name: 'Liverpool', abbr: 'LIV', sport: 'soccer', league: 'Premier League', founded: 1892, stadium: 'Anfield', city: 'Liverpool', color: '#C8102E', secondaryColor: '#00B2FF' },
+  { id: 3, name: 'Arsenal', abbr: 'ARS', sport: 'soccer', league: 'Premier League', founded: 1886, stadium: 'Emirates Stadium', city: 'London', color: '#EF0107', secondaryColor: '#FFD700' },
+  { id: 4, name: 'Chelsea', abbr: 'CHE', sport: 'soccer', league: 'Premier League', founded: 1905, stadium: 'Stamford Bridge', city: 'London', color: '#034694', secondaryColor: '#FFFFFF' },
+  { id: 5, name: 'Real Madrid', abbr: 'RMA', sport: 'soccer', league: 'La Liga', founded: 1902, stadium: 'Santiago Bernabéu', city: 'Madrid', color: '#FEBE10', secondaryColor: '#FFFFFF' },
+  { id: 6, name: 'Barcelona', abbr: 'BAR', sport: 'soccer', league: 'La Liga', founded: 1899, stadium: 'Camp Nou', city: 'Barcelona', color: '#A50044', secondaryColor: '#004D98' },
+  { id: 7, name: 'Los Angeles Lakers', abbr: 'LAL', sport: 'basketball', league: 'NBA', founded: 1947, stadium: 'Crypto.com Arena', city: 'Los Angeles', color: '#552583', secondaryColor: '#FDB927' },
+  { id: 8, name: 'Boston Celtics', abbr: 'BOS', sport: 'basketball', league: 'NBA', founded: 1957, stadium: 'TD Garden', city: 'Boston', color: '#007A33', secondaryColor: '#FFFFFF' },
+  { id: 9, name: 'New York Knicks', abbr: 'NYK', sport: 'basketball', league: 'NBA', founded: 1946, stadium: 'Madison Square Garden', city: 'New York', color: '#006BB6', secondaryColor: '#F58426' },
+  { id: 10, name: 'Denver Nuggets', abbr: 'DEN', sport: 'basketball', league: 'NBA', founded: 1976, stadium: 'Ball Arena', city: 'Denver', color: '#0E2240', secondaryColor: '#FF6B35' },
+];
+
+export const players: Player[] = [
+  {
+    id: 1,
+    name: 'Erling Haaland',
+    number: 9,
+    position: 'Forward',
+    teamId: 1,
+    nationality: 'Norwegian',
+    height: '6\'4"',
+    weight: '195 lbs',
+    dateOfBirth: '2000-07-21',
+    joinedDate: '2022-06-05',
+    stats: { appearances: 142, goals: 98, assists: 14, yellowCards: 12, redCards: 0, minutes: 10250 },
+    achievements: ['Premier League Top Scorer 2023-24', 'UCL Group Stage Top Scorer'],
+  },
+  {
+    id: 2,
+    name: 'Mohamed Salah',
+    number: 11,
+    position: 'Forward',
+    teamId: 2,
+    nationality: 'Egyptian',
+    height: '5\'9"',
+    weight: '165 lbs',
+    dateOfBirth: '1992-06-15',
+    joinedDate: '2017-07-22',
+    stats: { appearances: 256, goals: 169, assists: 62, yellowCards: 28, redCards: 1, minutes: 21984 },
+    achievements: ['Premier League Player of the Year 2022', 'African Player of the Year 2019'],
+  },
+  {
+    id: 3,
+    name: 'Kevin De Bruyne',
+    number: 17,
+    position: 'Midfielder',
+    teamId: 1,
+    nationality: 'Belgian',
+    height: '5\'10"',
+    weight: '176 lbs',
+    dateOfBirth: '1991-01-28',
+    joinedDate: '2015-08-30',
+    stats: { appearances: 298, goals: 79, assists: 85, yellowCards: 34, redCards: 0, minutes: 24156 },
+    achievements: ['FIFA World Player of the Year Nominee', 'Premier League Playmaker of the Year'],
+  },
+  {
+    id: 4,
+    name: 'LeBron James',
+    number: 23,
+    position: 'Small Forward',
+    teamId: 7,
+    nationality: 'American',
+    height: '6\'9"',
+    weight: '250 lbs',
+    dateOfBirth: '1984-12-30',
+    joinedDate: '2018-07-09',
+    stats: { appearances: 1476, goals: 40056, assists: 10751, yellowCards: 0, redCards: 0, minutes: 56995 },
+    achievements: ['NBA MVP 4x', 'NBA Finals MVP 4x', 'All-Star 20x'],
+  },
+  {
+    id: 5,
+    name: 'Jayson Tatum',
+    number: 0,
+    position: 'Small Forward',
+    teamId: 8,
+    nationality: 'American',
+    height: '6\'8"',
+    weight: '210 lbs',
+    dateOfBirth: '1998-03-23',
+    joinedDate: '2017-06-22',
+    stats: { appearances: 412, goals: 8764, assists: 2156, yellowCards: 0, redCards: 0, minutes: 15432 },
+    achievements: ['NBA All-Star 4x', 'All-NBA Team 2023'],
+  },
+  {
+    id: 6,
+    name: 'Vinícius Júnior',
+    number: 7,
+    position: 'Forward',
+    teamId: 5,
+    nationality: 'Brazilian',
+    height: '5\'10"',
+    weight: '170 lbs',
+    dateOfBirth: '2000-07-12',
+    joinedDate: '2018-07-10',
+    stats: { appearances: 198, goals: 72, assists: 28, yellowCards: 18, redCards: 0, minutes: 14562 },
+    achievements: ['UCL Runner-up 2024', 'La Liga Most Assists 2023-24'],
+  },
+  {
+    id: 7,
+    name: 'Pedri',
+    number: 8,
+    position: 'Midfielder',
+    teamId: 6,
+    nationality: 'Spanish',
+    height: '5\'9"',
+    weight: '157 lbs',
+    dateOfBirth: '2002-11-25',
+    joinedDate: '2021-11-01',
+    stats: { appearances: 134, goals: 12, assists: 18, yellowCards: 14, redCards: 0, minutes: 9876 },
+    achievements: ['Golden Boy 2021', 'La Liga Best Young Player'],
+  },
+];
+
+export const getTeamById = (teamId: number): Team | undefined => teams.find(t => t.id === teamId);
+export const getPlayersByTeamId = (teamId: number): Player[] => players.filter(p => p.teamId === teamId);
+export const getPlayerById = (playerId: number): Player | undefined => players.find(p => p.id === playerId);
 
 export const featuredMatchStats = {
   possession: { home: 58, away: 42 },

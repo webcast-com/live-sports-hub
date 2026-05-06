@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { ChevronUp, ChevronDown, Trophy } from 'lucide-react';
-import { Standing } from '@/data/sportsData';
+import { Link } from 'react-router-dom';
+import { Standing, getTeamById } from '@/data/sportsData';
 
 interface StandingsProps {
   standings: Standing[];
@@ -99,15 +100,18 @@ const Standings: React.FC<StandingsProps> = ({ standings: initialStandings }) =>
                       </span>
                     </td>
                     <td className="px-3 py-3.5">
-                      <div className="flex items-center gap-3">
+                      <Link
+                        to={`/team/${getTeamById(1)?.id || 1}`}
+                        className="flex items-center gap-3 hover:opacity-70 transition-opacity"
+                      >
                         <div
                           className="w-7 h-7 rounded-lg flex items-center justify-center text-white text-[9px] font-black flex-shrink-0"
                           style={{ backgroundColor: team.color }}
                         >
                           {team.abbr}
                         </div>
-                        <span className="text-white font-medium text-sm whitespace-nowrap">{team.team}</span>
-                      </div>
+                        <span className="text-white font-medium text-sm whitespace-nowrap hover:text-[#00d4ff] transition-colors">{team.team}</span>
+                      </Link>
                     </td>
                     <td className="px-3 py-3.5 text-sm text-white font-semibold tabular-nums">{team.wins}</td>
                     <td className="px-3 py-3.5 text-sm text-gray-400 tabular-nums">{team.draws ?? 0}</td>
